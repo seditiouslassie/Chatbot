@@ -235,7 +235,9 @@ def main():
     # SIGTERM or SIGABRT. This should be used most of the time
     # start_polling() is non-blocking and will stop the bot.
     updater.idle()
-    d.add_item(CITY, PINCODE, STANDARD, BOARD, MEDIUM, SUBJECTS, NUMBER, EMAIL, REQ, CONFIRM)
+    #d.add_item(CITY, PINCODE, STANDARD, BOARD, MEDIUM, SUBJECTS, NUMBER, EMAIL, REQ, CONFIRM)
+    print(CITY, PINCODE, STANDARD, BOARD, MEDIUM, SUBJECTS, NUMBER, EMAIL, REQ, CONFIRM)
+
     d.get_items()
 
 
