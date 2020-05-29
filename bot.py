@@ -24,7 +24,7 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 
 logger = logging.getLogger(__name__)
 
-START, LOCALITY,CITY,PINCODE, REQ, STANDARD, BOARD, MEDIUM, SUBJECTS, NUMBER, EMAIL, CONFIRM, END = range(13)
+START, LOCALITY,CITY,PINCODE, REQ, STANDARD, BOARD, MEDIUM, SUBJECTS, CONTACT, EMAIL, CONFIRM, END = range(13)
 
 
 """def start(update, context):
@@ -116,9 +116,9 @@ def subjects(update, context):
 		 'One last thing. Which subjects are you looking for?',
 		 reply_markup=ReplyKeyboardRemove())
 
-	return NUMBER
+	return CONTACT
 
-def number (update,context):
+def contact (update,context):
 	user=update.message.from_user
 	logger.info("Phone Number of %s: %s", user.first_name, update.message.text)
 	update.message.reply_text(
@@ -210,7 +210,7 @@ def main():
 
             SUBJECTS: [MessageHandler(Filters.text, subjects)],
 
-            NUMBER: [MessageHandler(Filters.text, number)],
+            CONTACT: [MessageHandler(Filters.text, number)],
 
             EMAIL: [MessageHandler(Filters.text, email)],
 
