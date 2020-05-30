@@ -8,19 +8,13 @@ class DB:
         self.conn = sqlite3.connect(dbname)
 
     def setup(self):
-        stmt = "CREATE TABLE INFO(city text, pincode integer, req text, standard text, board text, medium text, subjects text, contact integer, email text, confirm text)"
+        stmt = "CREATE TABLE IF NOT EXISTS INFO(locality text, city text, pincode integer, email text, modeofcontact text, req text, board text, standard integer, subjects text, Deal text, confirm text)"
         self.conn.execute(stmt)
         self.conn.commit()
 
-<<<<<<< HEAD
-    def add_item(self, City, Pincode, Req, Standard, Board, Medium, Subjects, Contact, Email, Confirm):
-        stmt = "INSERT INTO INFO (city, pincode, req, standard, board, medium, subjects, contact, email, confirm) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
-        args = (City, Pincode, Req, Standard, Board, Medium, Subjects, Contact, Email, Confirm)
-=======
-    def add_item(self, City, Pincode, Standard, Board, Medium, Subjects, Number, Email, Req, Confirm):
-        stmt = "INSERT INTO INFO (city, pincode, standard, board, medium, subjects, number, email, req, confirm) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
-        args = (City, Pincode, Standard, Board, Medium, Subjects, Number, Email, Req, Confirm)
->>>>>>> 4996f3ebacbefe82d22895638a9b1bc352ab5994
+    def add_item(self, Locality, City, Pincode, Email, Modeofcontact, Req, Board, Standard, Subjects, Deal, Confirm):
+        stmt = "INSERT INTO INFO (Locality, City, Pincode, Email, modeofcontact, Req, Board, Standard, Subjects, Deal, Confirm) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)"
+        args = (Locality, City, Pincode, Email, Modeofcontact, Req, Board, Standard, Subjects, Deal, Confirm)
         self.conn.execute(stmt, args)
         self.conn.commit()
 
@@ -31,7 +25,5 @@ class DB:
         self.conn.commit()
 
     def get_items(self):
-        stmt = "SELECT City, Pincode, Standard, Board, Medium, Subjects, Number, Email, Req, Confirm FROM INFO"
-        self.conn.execute(stmt)
-        
-        #return [x[0] for x in self.conn.execute(stmt)]
+        stmt = "SELECT Locality, City, Pincode, Email, mode_of_contact, Req, Board, Standard, Subjects, Deal, Confirm FROM INFO"
+        return [x for x in self.conn.execute(stmt)]
